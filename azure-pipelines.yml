@@ -26,20 +26,20 @@ stages:
         - script: ls -al
           displayName: 'Basic Information - directory contents'
 
-      - task: gitversion/setup@0
-        displayName: Install GitVersion
-        inputs:
-          versionSpec: '5.x'
+      # - task: gitversion/setup@0
+      #   displayName: Install GitVersion
+      #   inputs:
+      #     versionSpec: '5.x'
 
-      - task: gitversion/execute@0
-        displayName: Determine Version
-        inputs:
-          additionalArguments: '/showConfig'
-          useConfigFile: true   # default config file: GitVersion.yml
-          configFilePath: './GitVersion.yml'
+      # - task: gitversion/execute@0
+      #   displayName: Determine Version
+      #   inputs:
+      #     additionalArguments: '/showConfig'
+      #     useConfigFile: true   # default config file: GitVersion.yml
+      #     configFilePath: './GitVersion.yml'
 
-      - script: echo Current version is SemVer $(GitVersion.SemVer)
-        displayName: Current Version
+      # - script: echo Current version is SemVer $(GitVersion.SemVer)
+      #   displayName: Current Version
 
       # - script: |
       #     echo Major: $(GitVersion.Major)
@@ -75,20 +75,20 @@ stages:
       #     echo CommitDate: $(GitVersion.CommitDate)
 
 
-      - task: Bash@3
-        inputs:
-          targetType: inlinescript echo "#vso[build.updatebuildnumber]$(semVer)"
+      # - task: Bash@3
+      #   inputs:
+      #     targetType: inlinescript echo "#vso[build.updatebuildnumber]$(semVer)"
 
-      - script: dotnet build --configuration $(buildConfiguration)
-        displayName: 'dotnet build $(buildConfiguration)'
+      # - script: dotnet build --configuration $(buildConfiguration)
+      #   displayName: 'dotnet build $(buildConfiguration)'
 
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet test'
-        inputs:
-          command: 'test'
-          projects: '**/*.csproj'
-          publishTestResults: true
-          configuration: $(buildConfiguration)
+      # - task: DotNetCoreCLI@2
+      #   displayName: 'dotnet test'
+      #   inputs:
+      #     command: 'test'
+      #     projects: '**/*.csproj'
+      #     publishTestResults: true
+      #     configuration: $(buildConfiguration)
 
 # build must be approved before getting deployed to dev environment
 # - stage: wait_for_approval
