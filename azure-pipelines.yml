@@ -17,10 +17,10 @@ stages:
       - script: echo 'Pipeline:\s version $(version)\nBuild.ArtifactStagingDirectory:\s $(Build.ArtifactStagingDirectory)\nCurrent Directory:\s $(pwd)\nContent:\s $(ls -al)'
         displayName: 'Basic Information'
 
-      # - task: gitversion/setup@0
-      #   displayName: Install GitVersion
-      #   inputs:
-      #     versionSpec: '5.x'
+      - task: gitversion/setup@0
+        displayName: Install GitVersion
+        inputs:
+          versionSpec: '5.x'
 
       - task: gitversion/execute@0
         displayName: Determine Version
