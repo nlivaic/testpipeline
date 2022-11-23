@@ -14,8 +14,17 @@ stages:
   jobs:
     - job: BuildAndTest
       steps:
-      - script: echo 'Pipeline version $(version) -- Build.ArtifactStagingDirectory $(Build.ArtifactStagingDirectory) -- Current Directory $(pwd) -- Content $(ls -al)'
-        displayName: 'Basic Information'
+        - script: echo 'Pipeline version $(version)'
+          displayName: 'Basic Information - Version'
+          
+        - script: echo 'Build.ArtifactStagingDirectory $(Build.ArtifactStagingDirectory)'
+          displayName: 'Basic Information - ArtifactStagingDirectory'
+          
+        - script: echo 'Current Directory $(pwd)'
+          displayName: 'Basic Information - Current Directory'
+          
+        - script: echo '$(ls -al)'
+          displayName: 'Basic Information - ls -al'
 
       - task: gitversion/setup@0
         displayName: Install GitVersion
