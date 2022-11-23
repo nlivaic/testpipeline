@@ -38,7 +38,7 @@ stages:
             useConfigFile: true   # default config file: GitVersion.yml
             configFilePath: './GitVersion.yml'
 
-        - script: $GITVERSION_SEMVER
+        - script: echo $GITVERSION_SEMVER
           displayName: Current Version
 
       # - script: |
