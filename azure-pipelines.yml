@@ -15,16 +15,16 @@ stages:
     - job: BuildAndTest
       steps:
         - script: echo Pipeline version $(version)
-          displayName: 'Basic Information - Version'
+          displayName: Basic Information - Version
           
         - script: echo Build.ArtifactStagingDirectory $(Build.ArtifactStagingDirectory)
-          displayName: 'Basic Information - ArtifactStagingDirectory'
+          displayName: Basic Information - ArtifactStagingDirectory
           
         - script: echo Current Directory $(pwd)
-          displayName: 'Basic Information - Current Directory'
+          displayName: Basic Information - Current Directory
           
         - script: echo $(ls -al)
-          displayName: 'Basic Information - ls -al'
+          displayName: Basic Information - ls -al
 
       - task: gitversion/setup@0
         displayName: Install GitVersion
