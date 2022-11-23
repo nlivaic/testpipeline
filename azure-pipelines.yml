@@ -23,8 +23,8 @@ stages:
         # - script: echo Current Directory $(pwd)
         #   displayName: Basic Information - Current Directory
           
-        - script: echo $(ls -al)
-          displayName: Basic Information - directory contents
+        # - script: echo $(ls -al)
+        #   displayName: Basic Information - directory contents
 
       - task: gitversion/setup@0
         displayName: Install GitVersion
