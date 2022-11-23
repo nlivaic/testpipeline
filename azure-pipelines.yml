@@ -15,16 +15,16 @@ stages:
     - job: BuildAndTest
       steps:
         - script: version
-          displayName: Basic Information - Version
+          displayName: 'Basic Information - Version'
           
         - script: Build.ArtifactStagingDirectory
-          displayName: Basic Information - ArtifactStagingDirectory
+          displayName: 'Basic Information - ArtifactStagingDirectory'
           
         - script: pwd
-          displayName: Basic Information - Current Directory
+          displayName: 'Basic Information - Current Directory'
           
         - script: ls -al
-          displayName: Basic Information - directory contents
+          displayName: 'Basic Information - directory contents'
 
       - task: gitversion/setup@0
         displayName: Install GitVersion
