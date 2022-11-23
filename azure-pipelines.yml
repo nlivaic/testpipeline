@@ -17,7 +17,7 @@ stages:
         - script: echo $(version)
           displayName: 'Basic Information - Version'
           
-        - script: Build.ArtifactStagingDirectory
+        - script: echo $(Build.ArtifactStagingDirectory)
           displayName: 'Basic Information - ArtifactStagingDirectory'
           
         - script: pwd
