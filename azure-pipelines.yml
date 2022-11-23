@@ -14,7 +14,7 @@ stages:
   jobs:
     - job: BuildAndTest
       steps:
-        - script: version
+        - script: echo $(version)
           displayName: 'Basic Information - Version'
           
         - script: Build.ArtifactStagingDirectory
