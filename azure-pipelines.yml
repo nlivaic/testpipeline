@@ -24,7 +24,7 @@ stages:
           displayName: 'Basic Information - Current Directory'
           
         - script: ls -al
-          displayName: 'Basic Information - directory contents'
+          displayName: 'Basic Information - Directory Contents'
 
         - task: gitversion/setup@0
           displayName: Install GitVersion
@@ -38,8 +38,8 @@ stages:
             useConfigFile: true   # default config file: GitVersion.yml
             configFilePath: './GitVersion.yml'
 
-      # - script: echo Current version is SemVer $(GitVersion.SemVer)
-      #   displayName: Current Version
+        - script: echo Current version is SemVer $(GitVersion.SemVer)
+          displayName: Current Version
 
       # - script: |
       #     echo Major: $(GitVersion.Major)
