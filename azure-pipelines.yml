@@ -26,17 +26,17 @@ stages:
         - script: ls -al
           displayName: 'Basic Information - directory contents'
 
-      - task: gitversion/setup@0
-        displayName: Install GitVersion
-        inputs:
-          versionSpec: '5.x'
+        - task: gitversion/setup@0
+          displayName: Install GitVersion
+          inputs:
+            versionSpec: '5.x'
 
-      - task: gitversion/execute@0
-        displayName: Determine Version
-        inputs:
-          additionalArguments: '/showConfig'
-          useConfigFile: true   # default config file: GitVersion.yml
-          configFilePath: './GitVersion.yml'
+        - task: gitversion/execute@0
+          displayName: Determine Version
+          inputs:
+            additionalArguments: '/showConfig'
+            useConfigFile: true   # default config file: GitVersion.yml
+            configFilePath: './GitVersion.yml'
 
       # - script: echo Current version is SemVer $(GitVersion.SemVer)
       #   displayName: Current Version
