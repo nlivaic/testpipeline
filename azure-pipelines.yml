@@ -33,19 +33,12 @@ stages:
           displayName: Install GitVersion
           inputs:
             versionSpec: '5.x'
-
+          
         - task: gitversion/execute@0
           displayName: Determine Version
           inputs:
-            additionalArguments: '/showConfig'
-            useConfigFile: true   # default config file: GitVersion.yml
+            useConfigFile: true
             configFilePath: 'GitVersion.yml'
-          
-        # - task: gitversion/execute@0
-        #   displayName: Determine Version
-        #   inputs:
-        #     useConfigFile: true
-        #     configFilePath: 'GitVersion.yml'
 
         - script: echo $GITVERSION_SEMVER
           displayName: Current Version
@@ -101,19 +94,19 @@ stages:
       #     projects: '**/*.csproj'
       #     publishTestResults: true
       #     configuration: $(buildConfiguration)
-  
-  # build must be approved before getting deployed to dev environment
-  # - stage: wait_for_approval
-  #   pool: server
-  #   condition: eq(variables['Build.Reason'], 'IndividualCI')
-  #   jobs:
-  #     - job: waitForApproval
-  #       displayName: 'wait for approval'
-  #       # timeoutInMinutes: 1440    # 3 days before the build is rejected
-  #       steps:
-  #       - task: ManualValidation@0
-  #         # timeoutInMinutes: 1440    # 3 days before the task is rejected.
-  #         inputs:
-  #           #notifyUsers: $(notify_user_for_approval_1)
-  #           instructions: 'Please validate the build before pushing to nuget.org'
-  #           onTimeout: reject
+
+# build must be approved before getting deployed to dev environment
+# - stage: wait_for_approval
+#   pool: server
+#   condition: eq(variables['Build.Reason'], 'IndividualCI')
+#   jobs:
+#     - job: waitForApproval
+#       displayName: 'wait for approval'
+#       # timeoutInMinutes: 1440    # 3 days before the build is rejected
+#       steps:
+#       - task: ManualValidation@0
+#         # timeoutInMinutes: 1440    # 3 days before the task is rejected.
+#         inputs:
+#           #notifyUsers: $(notify_user_for_approval_1)
+#           instructions: 'Please validate the build before pushing to nuget.org'
+#           onTimeout: reject
