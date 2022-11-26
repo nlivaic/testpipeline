@@ -84,6 +84,11 @@ stages:
             projects: '**/*.csproj'
             publishTestResults: true
             configuration: $(buildConfiguration)
+        
+        - script: dotnet publish -o $(Build.ArtifactStagingDirectory)
+          displayName: 'publish'
+            
+            
 
 # build must be approved before getting deployed to dev environment
 # - stage: wait_for_approval
