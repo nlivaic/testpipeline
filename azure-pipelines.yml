@@ -85,7 +85,7 @@ stages:
             publishTestResults: true
             configuration: $(buildConfiguration)
         
-        - script: dotnet publish -o $(Build.ArtifactStagingDirectory)
+        - script: dotnet publish -o $(Build.ArtifactStagingDirectory) -c $(buildConfiguration)
           displayName: 'publish'
             
             
