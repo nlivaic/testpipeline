@@ -39,7 +39,10 @@ stages:
             configFilePath: './GitVersion.yml'
 
         - script: echo $GITVERSION_SEMVER
-          displayName: Current Version
+        displayName: Current Version
+        
+        - script: echo $(GitVersion.Major)
+        displayName: Current Version
 
       # - script: |
       #     echo Major: $(GitVersion.Major)
