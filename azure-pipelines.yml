@@ -40,12 +40,6 @@ stages:
             useConfigFile: true
             configFilePath: 'GitVersion.yml'
 
-        - script: echo $GITVERSION_SEMVER
-          displayName: Current Version
-        
-        - script: echo Major $(GitVersion.SemVer)
-          displayName: Current Version1
-
         - script: |
             echo Major: $(GitVersion.Major)
             echo Minor: $(GitVersion.Minor)
@@ -78,22 +72,18 @@ stages:
             echo CommitsSinceVersionSourcePadded: $(GitVersion.CommitsSinceVersionSourcePadded)
             echo UncommittedChanges: $(GitVersion.UncommittedChanges)
             echo CommitDate: $(GitVersion.CommitDate)
+          displayName: Current Version (SemVer)
 
+        - script: dotnet build --configuration $(buildConfiguration)
+          displayName: 'dotnet build $(buildConfiguration)'
 
-      # - task: Bash@3
-      #   inputs:
-      #     targetType: inlinescript echo "#vso[build.updatebuildnumber]$(semVer)"
-
-      # - script: dotnet build --configuration $(buildConfiguration)
-      #   displayName: 'dotnet build $(buildConfiguration)'
-
-      # - task: DotNetCoreCLI@2
-      #   displayName: 'dotnet test'
-      #   inputs:
-      #     command: 'test'
-      #     projects: '**/*.csproj'
-      #     publishTestResults: true
-      #     configuration: $(buildConfiguration)
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet test'
+          inputs:
+            command: 'test'
+            projects: '**/*.csproj'
+            publishTestResults: true
+            configuration: $(buildConfiguration)
 
 # build must be approved before getting deployed to dev environment
 # - stage: wait_for_approval
