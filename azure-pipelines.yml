@@ -94,6 +94,10 @@ stages:
             publishLocation: 'pipeline'
             artifact: 'drop'
           displayName: 'Publish Artifact'
+        
+        - script: ls -al
+          displayName: 'delete me 1'
+          workingDirectory: '$(Pipeline.Workspace)'
 
 # build must be approved before getting deployed to dev environment
 # - stage: wait_for_approval
@@ -118,10 +122,6 @@ stages:
     - job: deployToDev
       displayName: 'Deploy to Dev'
       steps:
-        
-      - script: ls -al
-        displayName: 'delete me 1'
-        workingDirectory: '$(Pipeline.Workspace)'
 
       - task: DownloadPipelineArtifact@2
         inputs:
@@ -132,10 +132,6 @@ stages:
       - script: pwd
         displayName: 'Basic Information - Current Directory'
         workingDirectory: '$(Pipeline.Workspace)'
-        
-      - script: ls -al
-        displayName: 'delete me 1'
-        workingDirectory: '$(Pipeline.Workspace)/drop'
         
       - script: ls -al
         displayName: 'Basic Information - Directory Contents'
