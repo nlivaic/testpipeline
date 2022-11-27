@@ -140,5 +140,5 @@ stages:
           appName: 'testpipeline987'
           deployToSlotOrASE: true
           resourceGroupName: 'DefaultResourceGroup-WEU'
-          slotName: 'production'
+          slotName: 'staging'
           package: '$(Pipeline.Workspace)/drop'
