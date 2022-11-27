@@ -10,7 +10,7 @@ variables:
 
 stages:
 # build and run tests
-- stage: Build
+- stage: build
   jobs:
     - job: BuildAndTest
       steps:
