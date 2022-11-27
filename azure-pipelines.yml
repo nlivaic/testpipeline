@@ -126,6 +126,8 @@ stages:
 
       - script: pwd
         displayName: 'Basic Information - Current Directory'
+        workingDirectory: '$(Pipeline.Workspace)'
         
       - script: ls -al
         displayName: 'Basic Information - Directory Contents'
+        workingDirectory: '$(Pipeline.Workspace)'
