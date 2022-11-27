@@ -113,7 +113,6 @@ stages:
 
 # Deploy to development slot in App Service
 - stage: deploy_to_dev
-  pool: server
   condition: eq(variables['Build.Reason'], 'IndividualCI')
   jobs:
     - job: deployToDev
