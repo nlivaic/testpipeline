@@ -87,20 +87,13 @@ stages:
         
         - script: dotnet publish -o $(Build.ArtifactStagingDirectory) -c $(buildConfiguration)
           displayName: 'dotnet publish'
-            
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'drop'
-            publishLocation: 'Container'
         
         - task: PublishPipelineArtifact@1
           inputs:
             targetPath: '$(Build.ArtifactStagingDirectory)'
             publishLocation: 'pipeline'
             artifact: 'drop'
-            
-            
+          displayName: 'Publish Artifact'
 
 # build must be approved before getting deployed to dev environment
 # - stage: wait_for_approval
@@ -117,3 +110,23 @@ stages:
 #           #notifyUsers: $(notify_user_for_approval_1)
 #           instructions: 'Please validate the build before pushing to nuget.org'
 #           onTimeout: reject
+
+# Deploy to development slot in App Service
+- stage: deploy_to_dev
+  pool: server
+  condition: eq(variables['Build.Reason'], 'IndividualCI')
+  jobs:
+    - job: deployToDev
+      displayName: 'Deploy to Dev'
+      steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          targetPath: '$(Pipeline.Workspace)/drop'
+          artifactName: 'drop'
+
+      - script: pwd
+        displayName: 'Basic Information - Current Directory'
+        
+      - script: ls -al
+        displayName: 'Basic Information - Directory Contents'
