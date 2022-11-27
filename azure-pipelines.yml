@@ -118,6 +118,11 @@ stages:
     - job: deployToDev
       displayName: 'Deploy to Dev'
       steps:
+        
+      - script: ls -al
+        displayName: 'delete me 1'
+        workingDirectory: '$(Pipeline.Workspace)/drop'
+
       - task: DownloadPipelineArtifact@2
         inputs:
           buildType: 'current'
@@ -127,6 +132,10 @@ stages:
       - script: pwd
         displayName: 'Basic Information - Current Directory'
         workingDirectory: '$(Pipeline.Workspace)'
+        
+      - script: ls -al
+        displayName: 'delete me 1'
+        workingDirectory: '$(Pipeline.Workspace)/drop'
         
       - script: ls -al
         displayName: 'Basic Information - Directory Contents'
