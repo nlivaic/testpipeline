@@ -118,25 +118,24 @@ stages:
     - job: deployToDev
       displayName: 'Deploy to Dev'
       steps:
-        
-      - script: ls -al
-        displayName: 'delete me 1'
-        workingDirectory: '$(Pipeline.Workspace)/drop'
+        - script: ls -al
+          displayname: 'delete me 1'
+          workingdirectory: '$(pipeline.workspace)'
 
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          buildType: 'current'
-          targetPath: '$(Pipeline.Workspace)/drop'
-          artifactName: 'drop'
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+            targetPath: '$(Pipeline.Workspace)/drop'
+            artifactName: 'drop'
 
-      - script: pwd
-        displayName: 'Basic Information - Current Directory'
-        workingDirectory: '$(Pipeline.Workspace)'
-        
-      - script: ls -al
-        displayName: 'delete me 1'
-        workingDirectory: '$(Pipeline.Workspace)/drop'
-        
-      - script: ls -al
-        displayName: 'Basic Information - Directory Contents'
-        workingDirectory: '$(Pipeline.Workspace)'
+        - script: pwd
+          displayName: 'Basic Information - Current Directory'
+          workingDirectory: '$(Pipeline.Workspace)'
+          
+        - script: ls -al
+          displayName: 'delete me 1'
+          workingDirectory: '$(Pipeline.Workspace)/drop'
+          
+        - script: ls -al
+          displayName: 'Basic Information - Directory Contents'
+          workingDirectory: '$(Pipeline.Workspace)'
