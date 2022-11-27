@@ -94,10 +94,6 @@ stages:
             publishLocation: 'pipeline'
             artifact: 'drop'
           displayName: 'Publish Artifact'
-        
-        - script: ls -al
-          displayName: 'delete me 1'
-          workingDirectory: '$(Pipeline.Workspace)'
 
 # build must be approved before getting deployed to dev environment
 # - stage: wait_for_approval
@@ -136,3 +132,13 @@ stages:
       - script: ls -al
         displayName: 'Basic Information - Directory Contents'
         workingDirectory: '$(Pipeline.Workspace)'
+      
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: 'Azure subscription 1(016d17d1-f31b-45f7-9ce2-83288758c9ed)'
+          appType: 'webAppLinux'
+          appName: 'testpipeline987'
+          deployToSlotOrASE: true
+          resourceGroupName: 'DefaultResourceGroup-WEU'
+          slotName: 'production'
+          package: '$(Pipeline.Workspace)/drop'
