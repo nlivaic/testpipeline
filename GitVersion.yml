@@ -1,9 +1,13 @@
 mode: Mainline
+major-version-bump-message: 'breaking\:'
+minor-version-bump-message: 'feature\:'
+patch-version-bump-message: 'fix\:'
 branches:
+  main:
+    regex: ^master$|^main$
   feature:
-    tag: feature-{BranchName}
+    regex: ^feature[/-]
+    tag: useBranchName
   hotfix:
-    tag: fix-{BranchName}
-ignore:
-  sha: []
-merge-message-formats: {}
+    regex: ^fix[/-]
+    tag: useBranchName
