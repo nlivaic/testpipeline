@@ -97,7 +97,7 @@ stages:
 
 # Deploy to development slot in App Service
 - stage: deploy_to_dev
-  condition: neq(variables['Build.Reason'], 'PullRequest')
+  condition: ne(variables['Build.Reason'], 'PullRequest')
   jobs:
     - job: deployToDevelopment
       displayName: 'Deploy to Development'
@@ -176,7 +176,7 @@ stages:
 # Build must be approved before getting deployed to production environment
 - stage: wait_for_approval
   pool: server
-  condition: neq(variables['Build.Reason'], 'PullRequest')
+  condition: ne(variables['Build.Reason'], 'PullRequest')
   jobs:
     - job: waitForApproval
       displayName: 'wait for approval'
@@ -191,7 +191,7 @@ stages:
 
 # Deploy to production slot in App Service
 - stage: deploy_to_production
-  condition: neq(variables['Build.Reason'], 'PullRequest')
+  condition: ne(variables['Build.Reason'], 'PullRequest')
   jobs:
     - job: deployToProduction
       displayName: 'Deploy to Production'
